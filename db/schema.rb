@@ -10,27 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_11_060523) do
+ActiveRecord::Schema.define(version: 2022_05_11_065430) do
 
-  create_table "blogs", charset: "utf8mb4", force: :cascade do |t|
-    t.string "title"
-    t.text "content"
-    t.boolean "is_public", default: true
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_blogs_on_user_id"
+  create_table "courses", charset: "utf8mb4", force: :cascade do |t|
+    t.string "course_name", limit: 50, comment: "课程名称"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "blogs_tags", charset: "utf8mb4", force: :cascade do |t|
-    t.integer "blog_id"
-    t.integer "tag_id"
+  create_table "scores", charset: "utf8mb4", force: :cascade do |t|
+    t.integer "score", limit: 1, comment: "分数"
+    t.integer "student_id", comment: "学生ID"
+    t.string "course_id", comment: "课程ID"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "tags", charset: "utf8mb4", force: :cascade do |t|
-    t.string "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "students", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name", limit: 30, comment: "学生姓名"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "teachers", charset: "utf8mb4", force: :cascade do |t|
@@ -40,16 +39,6 @@ ActiveRecord::Schema.define(version: 2022_05_11_060523) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "is_free", limit: 1, comment: "是否空闲"
-  end
-
-  create_table "users", charset: "utf8mb4", force: :cascade do |t|
-    t.string "username"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "style"
-    t.string "crypted_password", null: false
-    t.string "salt", null: false
-    t.string "email", limit: 80, default: "", null: false
   end
 
 end

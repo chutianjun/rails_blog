@@ -29,7 +29,8 @@ class WelcomeController < ApplicationController
     # 3.自己 写一个 脚本 利用 ActiveRecord::Base.connection.execute 或来创建
     #
     #
-
+    #我这里就简单的把这些方法写在一起了
+    #
     #写一个方法，统计各个年龄老师人数
     # statistics_of_teachers
     #
@@ -73,6 +74,34 @@ class WelcomeController < ApplicationController
     # per_page(order: :name, page_size: 10, currp_page: 1)
     #
     #
+    #
+    # 作业: count 和 size 的区别 ,使用has_many,has_one 关联查询
+    get_student_scores(2)
+  end
+
+  def get_student_scores(student_id)
+    #学生信息  SELECT `students`.* FROM `students` WHERE `students`.`id` = 1 LIMIT 1
+    student_data = Student.find(student_id)
+    #通过 has_many关联 查询出 该 学生的 所有 分数信息,使用includes 解决 n+1 循环查询 数据库  的问题
+    score_data = student_data.scores.includes(:course)
+
+    #通过分析sql SELECT COUNT(*) FROM `scores` WHERE `scores`.`student_id` = 1 可以看出count是 利用了 sql的 count函数
+    count = score_data.count
+
+    # SELECT `scores`.* FROM `scores` WHERE `scores`.`student_id` = 1 ,length 会查询所有结果,缓存到内存中,数据量如果 很多,就会 导致 内存 耗光
+    lenght = score_data.length
+
+    #比较灵活,如果内存中 已经 有 集合数据,就 用集合数据, 如果没有 ,就 用  count
+    size = score_data.size
+
+
+    score_data.each do |item|
+      # 通过关联, 获取 该 分数 属于 哪个 课程
+      course_item= item.course
+      p course_item.course_name
+    end
+
+    return_data count: count, size: size, lenght: lenght, data: score_data
   end
 
   #写一个方法，统计各个年龄老师人数
