@@ -27,4 +27,8 @@ Things you may want to cover:
 
 * 1.第一步,将config/database.example.yml 复制一份 为 database.yml,这里使用的是mysql, database.yml我已经忽略掉 了
 
-* 2.第二步,直接在 命令行 运行 rails s ,访问 127.0.0.1:3000 即可 
+* 2.第二步,运行 rails db:migrate 生成表结构,然后运行 rails db:seed 填充对应的数据
+
+* 3.第三步,直接在 命令行 运行 rails s ,访问 127.0.0.1:3000 即可 
+
+* 4.作业的位置如下:  welcome_controller ,work_controller ,此处没有 过多的业务,有的就一句话,所以 放在了一起,没有拆分

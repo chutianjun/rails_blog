@@ -91,7 +91,7 @@ class WorkController < ApplicationController
     # return_data top_assocation(20)
     #
     # (4)获取所有的员工数据,生成公司员工的树状结构,这条 要求 是 没有的 ,我写都写了,干脆加一个 生成 树状结构
-    # return_data get_all_tree
+    return_data get_all_tree
     #
   end
 
@@ -159,7 +159,7 @@ class WorkController < ApplicationController
 
   #通过一条语句查询出来(1)的结果
   def left_association(*id)
-    tree_init(Employee.select("eb.*")
+    ::CommonHelper::Tree.tree_init(Employee.select("eb.*")
                       .from('employees as ea')
                       .joins('right join employees as eb on (ea.parent_id=eb.parent_id or ea.parent_id=eb.id)')
                       .where("ea.id in (#{id.join(',')})"))
@@ -167,27 +167,10 @@ class WorkController < ApplicationController
 
   #获取 公司 员工的 树形结构
   def get_all_tree
-    tree_init(Employee.all)
+    ::CommonHelper::Tree.tree_init(Employee.all)
   end
 
-  #将数据转换为树形结构
-  def tree_init(data)
-    @hash_data = data.each_with_object({}) do |(item, key), hash_item|
-      hash_item[item.id] = item.attributes.dup
-    end
-    tree = []
-    @hash_data.each do |key, item|
-      if @hash_data[item["parent_id"]]
-        unless @hash_data[item["parent_id"]]['team_member']
-          @hash_data[item["parent_id"]]['team_member'] = []
-        end
-        @hash_data[item["parent_id"]]["team_member"] << @hash_data[item["id"]]
-      else
-        tree << @hash_data[item["id"]]
-      end
-    end
-    tree
-  end
+
 
   # 查询出某个人的所有上级,直到最顶层,如果要获取这种层级关系,最好在新增数据的时候, 在 数据库中记录一个 层级的 关系链条 字段
   # 这里 就 动态获取层级 了,因为  也不确定到底有几层关系
