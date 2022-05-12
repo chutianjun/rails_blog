@@ -1,0 +1,3 @@
+class TeacherStructure < ApplicationRecord
+
+end

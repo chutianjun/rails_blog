@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_11_065430) do
+ActiveRecord::Schema.define(version: 2022_05_11_123211) do
 
   create_table "courses", charset: "utf8mb4", force: :cascade do |t|
     t.string "course_name", limit: 50, comment: "课程名称"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "employees", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name", limit: 50, comment: "员工姓名"
+    t.integer "parent_id", default: 0, comment: "上级ID"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -28,6 +35,16 @@ ActiveRecord::Schema.define(version: 2022_05_11_065430) do
 
   create_table "students", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", limit: 30, comment: "学生姓名"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "age", limit: 1, comment: "学生年龄"
+    t.integer "teacher_id", comment: "老师ID,关联到teachers表"
+    t.integer "is_active", limit: 1, default: 1, comment: "是否活跃,活跃:1 不活跃:2,默认活跃"
+  end
+
+  create_table "teacher_structures", charset: "utf8mb4", force: :cascade do |t|
+    t.integer "teacher_id", comment: "老师ID"
+    t.integer "super_id", comment: "上级ID"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
