@@ -32,3 +32,5 @@ Things you may want to cover:
 * 3.第三步,直接在 命令行 运行 rails s ,访问 127.0.0.1:3000 即可 
 
 * 4.作业的位置如下:  welcome_controller ,work_controller ,此处没有 过多的业务,有的就一句话,所以 放在了一起,没有拆分
+* 作业1,sql增删改查相关,访问 127.0.0.1:3000
+* 作业2,关联,scope,生命周期,回调等 访问 127.0.0.1:3000/work
