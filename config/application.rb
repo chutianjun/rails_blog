@@ -45,5 +45,12 @@ module Blog
     #   web_url+'/v1/users',
     # ]
     # web_add_arr.each { |x| config.autoload_paths.push(x)}
+    #
+    #
+    #
+    # 官方提示 rails6 以上 ,在config/application.rb 下添加
+    # ActiveSupport::Inflector.inflections(:en) do |inflect|
+    #   inflect.acronym 'API'
+    # end
   end
 end

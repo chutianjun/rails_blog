@@ -7,8 +7,8 @@
 desc "API Routes"
 
 task :api_routes => :environment do
-  ApiApplication::Base.routes.each do |api|
-    prefix = '/api/web'
+  Web::BaseApi.routes.each do |api|
+    prefix = '/web/api'
     method = api.route_method.ljust(10)
     path = api.route_path
     puts "#{method} #{prefix}#{path}"
