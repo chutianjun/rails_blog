@@ -36,5 +36,14 @@ module Blog
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    # 自动加载目录
+    # web_url="#{Rails.root}/app/api/web"
+    # web_add_arr=[
+    #   web_url,
+    #   web_url+'/v1',
+    #   web_url+'/v1/users',
+    # ]
+    # web_add_arr.each { |x| config.autoload_paths.push(x)}
   end
 end

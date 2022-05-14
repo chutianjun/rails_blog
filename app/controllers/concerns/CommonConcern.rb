@@ -1,6 +1,6 @@
 module CommonConcern
   module OpeartionAction
-    def return_data(rcode = 200, rmsg = '操作成功', rdata)
+    def return_data(rdata='',rcode = 200, rmsg = '操作成功')
       render json: {
         code: rcode,
         msg: rmsg,

@@ -14,3 +14,7 @@
 # ActiveSupport::Inflector.inflections(:en) do |inflect|
 #   inflect.acronym 'RESTful'
 # end
+# rails 6.0 以上设置
+# ActiveSupport::Inflector.inflections(:en) do |inflect|
+#   inflect.acronym 'API'
+# end

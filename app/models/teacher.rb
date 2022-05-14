@@ -17,4 +17,23 @@ class Teacher < ApplicationRecord
     end
   end
 
+  #  第二题,添加show_name方法,如果数据库没有老师两个字,就在名称后加上 '老师' 两个字
+  #  比如,如果是张三,就返回张三老师
+  def show_name
+    #如果最后两位不是老师 两个字 ,加上老师 两个字
+    self.name += '老师' unless check_the_name_has_teacherstr?
+    self.name
+  end
+
+  #检测名称最后 是否 有 老师 两个字
+  def check_the_name_has_teacherstr?
+    #如果 名字 最后 两位不是老师 两个字
+    if self.name[-2..-1] != '老师'
+      #先把字符串中 可能存在 其他地方 的老师 去掉
+      self.name.gsub!('老师', '')
+      return false
+    end
+    true
+  end
+
 end

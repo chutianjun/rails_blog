@@ -159,7 +159,7 @@ class WorkController < ApplicationController
 
   #通过一条语句查询出来(1)的结果
   def left_association(*id)
-    ::CommonHelper::Tree.tree_init(Employee.select("eb.*")
+    ::TreeHelper::Tree.tree_init(Employee.select("eb.*")
                       .from('employees as ea')
                       .joins('right join employees as eb on (ea.parent_id=eb.parent_id or ea.parent_id=eb.id)')
                       .where("ea.id in (#{id.join(',')})"))
@@ -167,7 +167,7 @@ class WorkController < ApplicationController
 
   #获取 公司 员工的 树形结构
   def get_all_tree
-    ::CommonHelper::Tree.tree_init(Employee.all)
+    ::TreeHelper::Tree.tree_init(Employee.all)
   end
 
 

@@ -1,4 +1,5 @@
 class Student < ApplicationRecord
+
   #校验年龄,必须为整数,不允许为负数
   validates :age, numericality: { greater_than: 0, message: "抱歉,年龄不能为负数" }
 
@@ -18,4 +19,13 @@ class Student < ApplicationRecord
   #
   belongs_to :teacher, class_name: 'Teacher', foreign_key: :teacher_id, dependent: :destroy
 
+  #年龄超过18
+  def age_more_than_eighteen?
+    self.age.to_i >= 18
+  end
+
+  #检测是否是某个老师的学生
+  def teacher_id_check?
+    self.teacher_id == 1
+  end
 end

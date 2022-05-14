@@ -1,16 +1,16 @@
-module CommonHelper
-  def self.printasterisk
+module CommonapiHelper
+  def printasterisk
     p "*" * 15 + Time.now.to_s + '*' * 15
   end
 
-  def self.dd(*args)
+  def dd(*args)
     printasterisk
     args.each { |item| p item }
     printasterisk
     exit
   end
 
-  def self.dump(*args)
+  def dump(*args)
     printasterisk
     args.each { |item| p item }
     printasterisk
