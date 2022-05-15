@@ -11,9 +11,6 @@ class CourseTestApi < BaseApi
     #挂载 员工 相关api
     mount EmployeeTestApi
 
-    #挂载教师相关 api
-    mount TeacherApi
-
     #引入 module 里面的 helper 方法
     helpers StudentHelper
     #helper 方法的声明 必须要在调用的 代码块之前,否则 无法找到,会报错

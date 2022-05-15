@@ -5,10 +5,9 @@
 # require file_path
 # require '/mnt/rcc/blog/app/api/web/ApiApplication.rb'
 desc "API Routes"
-
 task :api_routes => :environment do
   Web::BaseApi.routes.each do |api|
-    prefix = '/web/api'
+    prefix = '/web'
     method = api.route_method.ljust(10)
     path = api.route_path
     puts "#{method} #{prefix}#{path}"

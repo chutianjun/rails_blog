@@ -8,6 +8,12 @@ module Web
           dump(Student.first)
           Student.limit(20)
         end
+        resource :grade_schools do
+          desc '获取学生'
+          get :index do
+            Student.limit(20)
+          end
+        end
       end
     end
   end

@@ -10,11 +10,6 @@ module Web
 
     mount V1::Users::StudentApi
 
-    resource :grade_schools do
-      desc '获取学生'
-      get :index do
-        Student.limit(20)
-      end
-    end
+
   end
 end
