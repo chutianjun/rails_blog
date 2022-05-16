@@ -48,7 +48,7 @@ Things you may want to cover:
 * /app/work_controller.rb
 * 访问 127.0.0.1:3000/work
 
-作业3,关于grape api和spec 单元测试等
-代码位置:
-grape相关:/app/api/TeacherApi.rb
-rspec相关:/spec/models/teacher_spec.rb
+* 作业3,关于grape api和spec 单元测试等
+* 代码位置:
+* grape相关:/app/api/TeacherApi.rb
+* rspec相关:/spec/models/teacher_spec.rb

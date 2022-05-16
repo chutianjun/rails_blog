@@ -43,6 +43,9 @@ group :development, :test do
   gem 'pry-byebug', '~> 3.9'
 end
 
+#跨域设置
+gem 'rack-cors', '~> 1.1', '>= 1.1.1'
+
 group :development do
 end
 

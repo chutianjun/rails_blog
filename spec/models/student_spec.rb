@@ -23,24 +23,24 @@ RSpec.describe Student, :type => :model do
   #实例方法名称
   describe "#teacher_id_check?" do
     #黄老师的ID为 1
-    context '是黄老师的学生' do
-      it 'student1 是' do
+    context 'is a student of mr huang' do
+      it 'student1 yes' do
         # 此处的 true 是 expect 预期的值,简单的 说 ,就是 执行 teacher_id_check? 方法 会得到的 结果
         expect(@student1.teacher_id_check?).to eq(true)
       end
-      it 'student_3 是' do
+      it 'student_3 yes' do
         expect(student_3.teacher_id_check?).to eq(true)
       end
-      it 'student_a 是' do
+      it 'student_a yes' do
         expect(student_a.teacher_id_check?).to eq(true)
       end
     end
 
-    context '不是黄老师的学生' do
-      it 'student_2 否' do
+    context 'not a student of mr huang' do
+      it 'student_2 no' do
         expect(@student_2.teacher_id_check?).to eq(false)
       end
-      it 'student_b 否' do
+      it 'student_b no' do
         expect(student_b.teacher_id_check?).to eq(false)
       end
     end
@@ -82,16 +82,16 @@ rspec ./spec/models/user_spec.rb:5 # Student#age_more_than_eighteen? students ol
 
 =end
 
-    #年龄大于18
+    #年龄 不大于18
     context "students younger than eighteen " do
-      it "姜立的年龄 否" do
+      it "姜立 no" do
         student = Student.create!(name: '姜立', age: 17, teacher_id: 1)
         expect(student.age_more_than_eighteen?).to eq(false)
       end
-      it 'student_4的年龄 否' do
+      it 'student_4 no' do
         expect(student_4.age_more_than_eighteen?).to eq(false)
       end
-      it 'student_b的年龄 否' do
+      it 'student_b no' do
         expect(student_b.age_more_than_eighteen?).to eq(false)
       end
     end
