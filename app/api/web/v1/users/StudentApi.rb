@@ -6,12 +6,12 @@ module Web
         # url 127.0.0.1:3000/web/v1/index
         get :index do
           dump(Student.first)
-          Student.limit(20)
+          return_data Student.limit(20)
         end
         resource :grade_schools do
           desc '获取学生'
           get :index do
-            Student.limit(20)
+            return_data Student.limit(20)
           end
         end
       end

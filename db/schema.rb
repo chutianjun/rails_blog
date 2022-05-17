@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_11_123211) do
+ActiveRecord::Schema.define(version: 2022_05_17_014808) do
 
   create_table "courses", charset: "utf8mb4", force: :cascade do |t|
     t.string "course_name", limit: 50, comment: "课程名称"
@@ -56,6 +56,16 @@ ActiveRecord::Schema.define(version: 2022_05_11_123211) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "is_free", limit: 1, comment: "是否空闲"
+  end
+
+  create_table "users", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name", limit: 30
+    t.string "addr"
+    t.integer "age", limit: 1
+    t.date "birth"
+    t.integer "sex", limit: 1
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
 end

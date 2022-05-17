@@ -43,8 +43,14 @@ group :development, :test do
   gem 'pry-byebug', '~> 3.9'
 end
 
+#配置文件
+gem 'config', '~> 4.0'
+
 #跨域设置
 gem 'rack-cors', '~> 1.1', '>= 1.1.1'
+
+#redis
+gem 'redis', '~> 4.6'
 
 group :development do
 end

@@ -52,5 +52,6 @@ module Blog
     # ActiveSupport::Inflector.inflections(:en) do |inflect|
     #   inflect.acronym 'API'
     # end
+    #
   end
 end
