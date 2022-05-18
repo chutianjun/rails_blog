@@ -13,7 +13,7 @@ class UserApi < BaseApi
   desc '添加用户'
   params do
     #requires 必填,allow_blank  false 不能为空
-    requires :name, type: String, desc: '用户名', allow_blank: false
+    requires :username, type: String, desc: '用户名', allow_blank: false
     # requires :number, type: Integer, values: {
     #   #范围1到20
     #   value: 1..20,
@@ -33,7 +33,13 @@ class UserApi < BaseApi
     # config= Rails.application.config_for(:database).username
     # dd(config)
     #
-    return_data save_user(params)
+    begin
+      return_data save_user(params)
+    rescue Exception => e
+      Rails.logger.info(e)
+      return_data '', 201, '新建用户失败,请重试'
+    ensure
+    end
   end
 
   desc '用户列表'
@@ -66,8 +72,6 @@ class UserApi < BaseApi
     return_data $redis.get('a')
   end
 
-
-
   desc '用户登录,并且获取token值'
   params do
     requires :username, type: String, desc: '用户名', allow_blank: false
@@ -77,7 +81,7 @@ class UserApi < BaseApi
     if (user = User.find_by(username: params[:username]).try(:authenticate, params[:password]))
       return_data user.token
     else
-      return_data '', 200, '用户名或密码错误'
+      return_data '', 201, '用户名或密码错误'
     end
   end
 

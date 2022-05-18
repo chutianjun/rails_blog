@@ -5,14 +5,14 @@ module CommonConcern
 
   def dd(*args)
     printasterisk
-    args.each { |item| p item }
+    args.each_with_index { |item, index| p 'param ' + (index+1).to_s + ":"; p item; p '-'*30 }
     printasterisk
     exit
   end
 
   def dump(*args)
     printasterisk
-    args.each { |item| p item }
+    args.each_with_index { |item, index| p 'param ' + (index+1).to_s + ":"; p item; p '-'*30 }
     printasterisk
   end
 

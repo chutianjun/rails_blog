@@ -9,7 +9,7 @@ class User < ApplicationRecord
   #将 用户ID 加入到 token 信息中
   def token
     {
-      token: Token.encode(user_id: self.id)
+      token: Token.encode(user_id: self.id, user_password: self.password_digest)
     }
   end
 end

@@ -2,14 +2,10 @@ module Helpers
   module UserHelper
     #保存用户
     def save_user(user)
-      begin
-        #开启事务
-        ActiveRecord::Base.transaction do
-          User.create!(username: user[:name], addr: user[:addr], age: user[:age], birth: user[:birth], sex: user[:sex])
-        end
-      rescue Exception => e
-        Rails.logger.info(e)
-      ensure
+      #开启事务
+      ActiveRecord::Base.transaction do
+        #password 在数据库中 实际 不存在
+        User.create!(username: user[:username], addr: user[:addr], age: user[:age], birth: user[:birth], sex: user[:sex], password: '123456')
       end
     end
 
@@ -18,7 +14,7 @@ module Helpers
       begin
         #开启事务
         ActiveRecord::Base.transaction do
-          User.find_by_id(user[:id]).update(username: user[:name], addr: user[:addr], age: user[:age], birth: user[:birth], sex: user[:sex])
+          User.find_by_id(user[:id]).update(username: user[:username], addr: user[:addr], age: user[:age], birth: user[:birth], sex: user[:sex])
         end
       rescue Exception => e
         #记录错误日志
