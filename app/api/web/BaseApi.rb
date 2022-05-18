@@ -8,8 +8,8 @@ module Web
 
     helpers CommonapiHelper
 
-    #挂载 V1版本的 所有接口
-    mount V1::WebApiBase
+    #所有v1版本的接口 的挂载 入口
+    mount V1::MountApi
 
   end
 end

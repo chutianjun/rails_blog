@@ -15,9 +15,6 @@ module Web
           end
         end
       end
-
-      #挂载学生接口
-      mount Users::StudentApi
     end
   end
 end
