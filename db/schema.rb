@@ -59,11 +59,14 @@ ActiveRecord::Schema.define(version: 2022_05_17_014808) do
   end
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
-    t.string "name", limit: 30
+    t.string "username", limit: 30
     t.string "addr"
     t.integer "age", limit: 1
     t.date "birth"
     t.integer "sex", limit: 1
+    t.integer "delete_time", default: 0
+    t.string "email"
+    t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

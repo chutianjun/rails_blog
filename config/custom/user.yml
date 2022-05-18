@@ -1,1 +1,4 @@
-userinfo: '提四月份'
+#无需校验token的url白名单,如果需要ignore,不校验token,在下面追加即可
+token_white_list:
+  '/user/login': '用户登录'
+  '/teachers/info': '老师详情'

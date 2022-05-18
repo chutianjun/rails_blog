@@ -8,8 +8,8 @@ module Web
 
     helpers CommonapiHelper
 
-    mount V1::Users::StudentApi
-
+    #挂载 V1版本的 所有接口
+    mount V1::WebApiBase
 
   end
 end

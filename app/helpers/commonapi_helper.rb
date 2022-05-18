@@ -18,10 +18,10 @@ module CommonapiHelper
 
   # grape 通用返回数据 格式
   def return_data(rdata = '', rcode = 200, rmsg = '操作成功')
-    {
-      code: rcode,
-      msg: rmsg,
-      data: rdata
-    }
+     {
+       code: rcode,
+       msg: rmsg,
+       data: rdata
+     }
   end
 end

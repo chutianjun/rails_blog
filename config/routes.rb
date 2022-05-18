@@ -4,12 +4,17 @@ Rails.application.routes.draw do
 
   get 'work' => 'work#index'
 
-  mount CourseTestApi =>'/coursetest'
+  mount CourseTestApi => '/coursetest'
 
-  mount TeacherApi =>'/teachers'
+  mount TeacherApi => '/teachers'
 
-  mount UserApi =>'/user'
+  mount UserApi => '/user'
 
-  mount Web::BaseApi=>'/web'
+  mount Web::BaseApi => '/web'
+
+  #jwt
+  resources :users, only: :index
+  resources :authentication, only: :create
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

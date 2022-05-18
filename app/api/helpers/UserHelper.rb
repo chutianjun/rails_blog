@@ -3,8 +3,39 @@ module Helpers
     #保存用户
     def save_user(user)
       begin
-        User.create!(name: user[:name], addr: user[:addr], age: user[:age], birth: user[:birth], sex: user[:sex])
+        #开启事务
+        ActiveRecord::Base.transaction do
+          User.create!(username: user[:name], addr: user[:addr], age: user[:age], birth: user[:birth], sex: user[:sex])
+        end
       rescue Exception => e
+        Rails.logger.info(e)
+      ensure
+      end
+    end
+
+    #修改用户
+    def edit_user(user)
+      begin
+        #开启事务
+        ActiveRecord::Base.transaction do
+          User.find_by_id(user[:id]).update(username: user[:name], addr: user[:addr], age: user[:age], birth: user[:birth], sex: user[:sex])
+        end
+      rescue Exception => e
+        #记录错误日志
+        Rails.logger.info(e)
+      ensure
+      end
+    end
+
+    #删除用户
+    def del_user(user)
+      begin
+        #开启事务
+        ActiveRecord::Base.transaction do
+          User.find_by_id(user[:id]).update(delete_time: Time.now)
+        end
+      rescue Exception => e
+        #记录错误日志
         Rails.logger.info(e)
       ensure
       end
@@ -16,7 +47,7 @@ module Helpers
         #用户总数
         user_total = User.count
         #搜索用户
-        user_search = User.select(:id, :name, :birth, :age, :addr, :sex)
+        user_search = User.select(:id, :username, :birth, :age, :addr, :sex).where(delete_time: 0)
         #多个where条件拼接,使用方式
         # 1.使用scope
         # 2.使用where!,改变原来的sql 查询

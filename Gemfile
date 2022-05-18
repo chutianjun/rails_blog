@@ -52,6 +52,11 @@ gem 'rack-cors', '~> 1.1', '>= 1.1.1'
 #redis
 gem 'redis', '~> 4.6'
 
+#jwt
+gem 'jwt', '~> 2.3'
+# bcrypt
+gem 'bcrypt', '3.1.18'
+
 group :development do
 end
 

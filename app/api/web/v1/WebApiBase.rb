@@ -1,5 +1,6 @@
 module Web
   module V1
+    #v1 版本 所有 接口的 父类
     class WebApiBase < Grape::API
       # inherited 钩子，一旦有 子类继承  inherited 钩子就会 被触发
       def self.inherited(subclass)
@@ -14,6 +15,9 @@ module Web
           end
         end
       end
+
+      #挂载学生接口
+      mount Users::StudentApi
     end
   end
 end
